@@ -24,17 +24,7 @@ const Footer = () => {
             <Link href="/" aria-label="home" className="flex items-center">
               <span className="font-display text-4xl font-bold text-white tracking-tight">CK</span>
             </Link>
-            <div className="flex gap-5">
-              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110 opacity-80 hover:opacity-100">
-                <Image src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/icons/66f629d681ac33b5c79a81e0_youtubeicon-1.png" alt="Youtube" width={24} height={24} />
-              </a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110 opacity-80 hover:opacity-100">
-                <Image src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/icons/66f629d681ac33b5c79a815a_instagram-2.png" alt="Instagram" width={24} height={24} />
-              </a>
-              <a href="https://www.tiktok.com/en/" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110 opacity-80 hover:opacity-100">
-                <Image src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/icons/66f629d681ac33b5c79a8161_tiktok-3.png" alt="TikTok" width={24} height={24} />
-              </a>
-            </div>
+
             <p className="text-base leading-relaxed text-white/90">
               Beautiful ideas deserve powerful technology.
             </p>
@@ -75,7 +65,7 @@ const Footer = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
           <p className="text-[#b3b3b3] text-sm md:text-base">
-            © 2025 CK. All Rights Reserved.
+            © {new Date().getFullYear()} CK. All Rights Reserved.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
             <div className="flex items-center text-sm md:text-base text-[#b3b3b3]">

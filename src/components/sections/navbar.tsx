@@ -50,13 +50,19 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-body ${
-        isScrolled ? "bg-black/95 backdrop-blur-md h-20 border-b border-white/5" : "bg-transparent h-24"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-body ${isScrolled
+        ? "bg-black/95 backdrop-blur-md h-20 border-b border-white/5"
+        : "bg-black/80 backdrop-blur-md h-24"
+        }`}
     >
       <div className="container mx-auto flex h-full items-center justify-between px-6 md:px-12 xl:px-18">
+        {/* Logo */}
         <Link href="/" aria-label="home" onClick={closeMenu} className="flex items-center">
-          <span className="font-display text-3xl font-bold text-white tracking-tight">CK</span>
+          <img
+            src="/favicon copy.ico" // <- using favicon as navbar logo
+            alt="Logo"
+            className="h-8 w-auto"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -77,11 +83,8 @@ const Navbar = () => {
 
         {/* Mobile Menu Panel */}
         <div
-          className={`lg:hidden fixed inset-0 bg-black/98 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-10 transition-opacity duration-300 ${
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          }`}
+          className={`lg:hidden fixed inset-0 bg-black/98 backdrop-blur-lg z-40 flex flex-col items-center justify-center space-y-10 transition-opacity duration-300 ${isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+            }`}
           onClick={closeMenu}
         >
           {navItems.map((item) => (

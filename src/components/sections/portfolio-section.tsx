@@ -1,114 +1,194 @@
 "use client";
 
-import React, { useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type PortfolioItem = {
   title: string;
   subtitle: string;
   description: string;
-  imageUrl: string;
-  href: string;
+  techStack: string[];
+  highlights: string[];
 };
 
 const portfolioItems: PortfolioItem[] = [
   {
-    title: "Chat App",
-    subtitle: "Real-Time Messaging",
-    description: "Connect instantly with modern features like typing indicators, image sharing, and emoji support — built with React, Node.js, and Socket.io.",
-    imageUrl:
-      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/images/66f629d681ac33b5c79a828d_BoardMockup-10.jpg",
-    href: "/works/chat-app",
+    title: "Afrilink",
+    subtitle: "Freelancing Across Africa",
+    description:
+      "Afrilink is an Upwork-inspired freelancing platform connecting African talents with global clients.",
+    techStack: ["React.js", "Node.js", "MongoDB", "Stripe/Flutterwave"],
+    highlights: [
+      "Secure user authentication and profiles",
+      "Real-time project bidding",
+      "Payment gateway integration",
+      "Dashboard for clients and freelancers",
+    ],
   },
   {
-    title: "School MIS System",
-    subtitle: "Smart Education Management",
-    description: "A platform for students and teachers to connect, track results, attendance, and feedback in one place.",
-    imageUrl:
-      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/images/66f629d681ac33b5c79a828e_PosterMockup-11.jpg",
-    href: "/works/school-mis",
+    title: "Milo",
+    subtitle: "AI-Powered Content Creation",
+    description:
+      "Milo helps creators brainstorm, draft, and polish their content using AI technology.",
+    techStack: ["OpenAI API", "Firebase", "React.js"],
+    highlights: [
+      "AI-assisted content generation",
+      "Real-time collaborative editing",
+      "Cloud storage for drafts",
+      "Multi-format export (PDF, DOCX, etc.)",
+    ],
   },
-  {
-    title: "TradeLink App",
-    subtitle: "Business & Logistics",
-    description: "A mobile platform that helps users see, buy, and move goods across Africa in real time — simplifying trade for small businesses.",
-    imageUrl:
-      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/images/66f629d681ac33b5c79a828f_Boards-Environment-12.jpg",
-    href: "/works/tradelink",
-  },
-  {
-    title: "VR World Game",
-    subtitle: "Virtual Reality Sandbox",
-    description: "A futuristic VR world where every character is a real human player. Starting in Rwanda, expanding globally.",
-    imageUrl:
-      "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/images/66f629d681ac33b5c79a828d_BoardMockup-10.jpg",
-    href: "/works/vr-world",
-  },
+  // ... add other projects similarly
 ];
 
-const FullScreenWorkCard = ({ item, index }: { item: PortfolioItem; index: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
+const WorksSection = () => {
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
   return (
-    <div ref={ref} className="relative h-screen w-full flex items-center justify-center">
-      <motion.div
-        style={{ opacity, scale, y }}
-        className="relative w-full h-full max-w-7xl mx-auto px-6 md:px-12 flex items-center"
-      >
-        <a href={item.href} className="block group w-full">
-          <div className="relative w-full h-[85vh] overflow-hidden rounded-3xl">
-            <Image
-              src={item.imageUrl}
-              alt={item.title}
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              sizes="100vw"
-              priority={index === 0}
-            />
-            <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-black/50 backdrop-blur-sm">
-              <div className="flex h-40 w-40 md:h-48 md:w-48 items-center justify-center rounded-full bg-white text-black transition-transform duration-500 group-hover:scale-110 scale-95">
-                <span className="font-display text-base md:text-lg font-semibold uppercase tracking-[0.1em] px-6 text-center leading-tight">
-                  View Work
-                </span>
-              </div>
-            </div>
-            
-            {/* Content overlay at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 p-8 md:p-12 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-              <h3 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-white leading-tight tracking-tight mb-2">
-                {item.title}
-              </h3>
-              <h4 className="font-display text-xl md:text-2xl lg:text-3xl font-semibold text-accent mb-4">
-                {item.subtitle}
+    <section className="relative bg-black text-white overflow-hidden">
+      {portfolioItems.map((item) => (
+        <FullScreenWorkCard
+          key={item.title}
+          item={item}
+          onView={() => setSelectedProject(item)}
+        />
+      ))}
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Glassmorphism container */}
+            <motion.div
+              className="relative w-full max-w-6xl h-[90vh] bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 p-8 flex flex-col overflow-y-auto"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              {/* Close button */}
+              <button
+                className="absolute top-4 right-4 text-white text-3xl font-bold z-50 hover:text-accent transition-colors"
+                onClick={() => setSelectedProject(null)}
+              >
+                ×
+              </button>
+
+              {/* Project Title */}
+              <h3 className="text-4xl md:text-5xl font-bold mb-2">{selectedProject.title}</h3>
+              <h4 className="text-accent text-2xl md:text-3xl mb-6 uppercase tracking-wider">
+                {selectedProject.subtitle}
               </h4>
-              <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-3xl">
-                {item.description}
-              </p>
-            </div>
-          </div>
-        </a>
+
+              {/* Project Overview */}
+              <section className="mb-6">
+                <h5 className="text-white/70 uppercase tracking-wide mb-2 font-semibold">
+                  Overview
+                </h5>
+                <p className="text-white/80 text-lg md:text-xl leading-relaxed">
+                  {selectedProject.description}
+                </p>
+              </section>
+
+              {/* Tech Stack */}
+              <section className="mb-6">
+                <h5 className="text-white/70 uppercase tracking-wide mb-2 font-semibold">
+                  Tech Stack
+                </h5>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-accent text-sm md:text-base"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              {/* Highlights / Features */}
+              <section className="mb-6">
+                <h5 className="text-white/70 uppercase tracking-wide mb-2 font-semibold">
+                  Highlights
+                </h5>
+                <ul className="list-disc list-inside text-white/80 text-lg md:text-xl space-y-1">
+                  {selectedProject.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Call to Action */}
+              <section className="mt-auto">
+                <p className="text-white/80 text-lg md:text-xl">
+                  Interested in more details? DM me at{" "}
+                  <a
+                    href="mailto:ckckclare@gmail.com"
+                    className="text-accent underline"
+                  >
+                    ckckclare@gmail.com
+                  </a>{" "}
+                  and I'll share the full project insights!
+                </p>
+              </section>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
+const FullScreenWorkCard = ({
+  item,
+  onView,
+}: {
+  item: PortfolioItem;
+  onView: () => void;
+}) => {
+  return (
+    <div className="relative h-screen w-full flex items-center justify-center px-6">
+      <motion.div className="relative z-10 text-center max-w-3xl">
+        <motion.h3
+          className="font-display text-5xl md:text-7xl font-bold mb-4 tracking-tight"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          {item.title}
+        </motion.h3>
+        <motion.h4
+          className="text-accent text-xl md:text-2xl mb-6 uppercase tracking-wider"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.2 }}
+        >
+          {item.subtitle}
+        </motion.h4>
+        <motion.p
+          className="text-white/80 text-lg md:text-xl leading-relaxed"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
+          {item.description}
+        </motion.p>
+
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="mt-10 inline-block cursor-pointer rounded-full border border-white/50 px-8 py-3 text-lg uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500"
+          onClick={onView}
+        >
+          View Project
+        </motion.div>
       </motion.div>
     </div>
   );
 };
 
-const PortfolioSection = () => {
-  return (
-    <section className="bg-black">
-      {portfolioItems.map((item, index) => (
-        <FullScreenWorkCard key={item.title} item={item} index={index} />
-      ))}
-    </section>
-  );
-};
-
-export default PortfolioSection;
+export default WorksSection;

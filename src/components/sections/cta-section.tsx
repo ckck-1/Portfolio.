@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 const CtaSection = () => {
@@ -75,27 +74,24 @@ const CtaSection = () => {
           <div className="flex flex-col items-center text-center">
             <motion.h5
               variants={itemVariants.label}
-              className="font-body text-sm md:text-base font-medium uppercase leading-snug tracking-[0.15em] text-[#b3b3b3] mb-6"
+              className="font-body text-sm md:text-sm font-medium uppercase leading-snug tracking-[0.15em] text-[#b3b3b3] mb-6"
             >
               GET IN TOUCH
             </motion.h5>
-            <motion.div
-              variants={itemVariants.getIn}
-              className="mb-4"
-            >
-              <h2 className="font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white text-center">
+            <motion.div variants={itemVariants.getIn} className="mb-4">
+              <h2 className="font-display text-[2rem] sm:text-[2.75rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6rem] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white text-center">
                 Let's build something bold,
               </h2>
             </motion.div>
             <motion.h2
               variants={itemVariants.touch}
-              className="font-display text-[2.5rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[7rem] xl:text-[8rem] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white mb-6"
+              className="font-display text-[2rem] sm:text-[2.75rem] md:text-[4rem] lg:text-[5.5rem] xl:text-[6rem] font-bold uppercase leading-[0.9] tracking-[-0.02em] text-white mb-6"
             >
               creative, and meaningful
             </motion.h2>
             <motion.p
               variants={itemVariants.label}
-              className="text-[#b3b3b3] text-base md:text-lg leading-relaxed max-w-2xl mb-8"
+              className="text-[#b3b3b3] text-base md:text-base leading-relaxed max-w-2xl mb-8"
             >
               Whether it's a brand, an app, or a full digital system — I'm here to bring your ideas to life.
             </motion.p>
@@ -106,10 +102,10 @@ const CtaSection = () => {
               >
                 <div className="relative h-[1.35em] overflow-hidden">
                   <span className="block text-base md:text-lg transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:-translate-y-full">
-                    📧 ckckclare@gmail.com
+                    ckckclare@gmail.com
                   </span>
                   <span className="absolute inset-0 block translate-y-full text-base md:text-lg transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:translate-y-0">
-                    📧 ckckclare@gmail.com
+                    ckckclare@gmail.com
                   </span>
                 </div>
                 <div className="flex size-12 md:size-14 shrink-0 items-center justify-center rounded-full bg-white ring-1 ring-inset ring-black/10">

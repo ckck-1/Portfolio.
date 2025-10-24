@@ -74,12 +74,12 @@
     }
   }
 
-  @keyframes marquee {
+  @keyframes spin {
     from {
-      transform: translateX(0);
+      transform: rotate(0deg);
     }
     to {
-      transform: translateX(-50%);
+      transform: rotate(360deg);
     }
   }
 
@@ -120,7 +120,13 @@
 
 @layer utilities {
   body {
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: auto;
   }
 }
 
@@ -160,107 +166,21 @@
     --sidebar-border: var(--color-sidebar-border);
     --sidebar-ring: var(--color-sidebar-ring);
   }
+}
+
+  /* Hide scrollbars globally while keeping scrolling enabled */
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+  }
+
+  *::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
   }
-
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    color: var(--foreground);
-    line-height: 1.1;
-  }
-
-  h1 {
-    font-size: 10rem; /* 160px */
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-
-  h2 {
-    font-size: 6.25rem; /* 100px */
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-  }
-
-  h3 {
-    font-size: 2.5rem; /* 40px */
-    font-weight: 600;
-    line-height: 1.2;
-    text-transform: uppercase;
-  }
-
-  h4 {
-    font-size: 1.75rem; /* 28px */
-    font-weight: 600;
-    line-height: 1.3;
-  }
-
-  h5 {
-    font-size: 1rem; /* 16px */
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  p {
-    font-size: 1rem; /* 16px */
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--color-secondary-text);
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: var(--color-accent-primary);
-  }
-
-  .text-outline {
-    color: transparent;
-    -webkit-text-stroke: 1px var(--color-outline-stroke);
-    text-stroke: 1px var(--color-outline-stroke);
-  }
-
-  .container {
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .container {
-      max-width: 1440px;
-      padding-left: 4.5rem;
-      padding-right: 4.5rem;
-    }
-  }
-}
 
 /* Hide Next.js error overlay portal */
 nextjs-portal {
