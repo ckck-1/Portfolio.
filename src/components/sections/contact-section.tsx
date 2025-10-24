@@ -26,9 +26,9 @@ const ContactSection = () => {
         setSubmitStatus(null);
 
         try {
-            const serviceId = "service_9vdpfbo";
-            const templateId = "template_6sfj4lw";
-            const publicKey = "AtKpw8esg2ToKvSy5";
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
+            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
+            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
 
             const emailData = {
                 title: "New Contact Message",
