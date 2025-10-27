@@ -154,15 +154,29 @@ const ContactSection = () => {
                 >
                     <p className="text-gray-400 mb-4">Or reach out directly:</p>
                     <div className="flex justify-center space-x-8">
-                        <a href="mailto:ckckclare@gmail.com" className="text-gray-200 hover:text-white transition-colors">
+                        <a
+                            href="mailto:ckckclare@gmail.com"
+                            className="text-gray-200 hover:text-white transition-colors"
+                        >
                             Email
                         </a>
-                        <a href="https://linkedin.com/in/yourprofile" className="text-gray-200 hover:text-white transition-colors">
-                            LinkedIn
-                        </a>
-                        <a href="https://github.com/yourusername" className="text-gray-200 hover:text-white transition-colors">
+
+                        <a
+                            href="https://github.com/ckck-1"
+                            className="text-gray-200 hover:text-white transition-colors"
+                        >
                             GitHub
                         </a>
+
+                        <a
+                            href="https://wa.me/0793752443"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-200 hover:text-white transition-colors"
+                        >
+                            WhatsApp
+                        </a>
+
                     </div>
                 </motion.div>
             </div>
