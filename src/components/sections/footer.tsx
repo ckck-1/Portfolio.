@@ -5,6 +5,7 @@ const HoverLink = ({ href, text }: { href: string; text: string }) => {
   return (
     <Link
       href={href}
+      prefetch={false}
       className="relative block h-6 overflow-hidden group text-base"
     >
       <div className="transition-transform duration-300 ease-out transform group-hover:-translate-y-6">
@@ -21,7 +22,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 md:px-12 xl:px-[4.5rem] py-20 md:py-28 lg:py-32">
         <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-12 xl:gap-16">
           <div className="flex flex-col gap-6 items-start lg:max-w-[280px]">
-            <Link href="/" aria-label="home" className="flex items-center">
+            <Link href="/" aria-label="home" prefetch={false} className="flex items-center">
               <span className="font-display text-4xl font-bold text-white tracking-tight">CK</span>
             </Link>
 

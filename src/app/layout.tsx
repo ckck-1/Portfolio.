@@ -26,6 +26,7 @@ export default function RootLayout({
           href="https://prod.spline.design/fP0LH65i8bXQDQjZ/scene.splinecode"
           as="fetch"
           type="application/spline"
+          crossOrigin="anonymous"
         />
       </head>
       <body className="antialiased">
