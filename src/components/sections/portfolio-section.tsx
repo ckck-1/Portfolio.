@@ -191,4 +191,4 @@ const FullScreenWorkCard = ({
   );
 };
 
-export default WorksSection;
+export default React.memo(WorksSection);

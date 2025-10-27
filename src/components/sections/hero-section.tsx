@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import Image from "next/image";
 import Spline from "@splinetool/react-spline";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const HeroSection = () => {
   const [isMounted, setIsMounted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const [modelRef, inView] = useInView({ threshold: 0.1 });
 
   useEffect(() => {
     setIsMounted(true);
@@ -32,7 +34,7 @@ const HeroSection = () => {
       {/* Background Elements with Framer Motion */}
       <motion.div
         className="absolute top-1/2 left-1/2 z-[1] h-[1344px] w-[1344px] -translate-x-1/2 -translate-y-1/2"
-        style={{ y: bg1Y }}
+        style={{ y: bg1Y, willChange: "transform" }}
       >
         <Image
           src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/6a4508f3-6eca-41d5-9ad4-eeee2203a219-idesigner-lite-template-webflow-io/assets/images/66f629d681ac33b5c79a8268_fingerprint-16.svg"
@@ -45,13 +47,13 @@ const HeroSection = () => {
 
       <motion.div
         className="absolute top-1/2 left-1/2 z-[1] h-[1344px] w-[1344px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(200,255,61,0.05)_0%,transparent_70%)]"
-        style={{ y: bg2Y }}
+        style={{ y: bg2Y, willChange: "transform" }}
       />
 
       {/* Text Content with Parallax */}
       <motion.div
         className="relative z-[2] flex flex-col items-center justify-center text-center p-4 px-6 max-w-5xl"
-        style={{ y: textY }}
+        style={{ y: textY, willChange: "transform" }}
       >
         <motion.h5
           className={`mb-6 font-body text-sm md:text-base font-medium uppercase tracking-[0.15em] text-secondary-text/90 transition-all duration-1000 ease-out ${
@@ -90,10 +92,15 @@ const HeroSection = () => {
 
       {/* 3D Model with Parallax */}
       <motion.div
+        ref={modelRef}
         className="absolute inset-0 z-[5] h-full w-full"
-        style={{ y: modelY }}
+        style={{ y: modelY, willChange: "transform" }}
       >
-        <Spline scene="https://prod.spline.design/fP0LH65i8bXQDQjZ/scene.splinecode" />
+        {inView && (
+          <Suspense fallback={<div className="w-full h-full bg-gray-900 animate-pulse" />}>
+            <Spline scene="https://prod.spline.design/fP0LH65i8bXQDQjZ/scene.splinecode" />
+          </Suspense>
+        )}
       </motion.div>
 
       {/* Scroll Down Button with Animation */}
@@ -121,4 +128,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default React.memo(HeroSection);

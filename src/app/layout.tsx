@@ -20,6 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="https://prod.spline.design/fP0LH65i8bXQDQjZ/scene.splinecode"
+          as="fetch"
+          type="application/spline"
+        />
+      </head>
       <body className="antialiased">
         <ErrorReporter />
         <Loader />

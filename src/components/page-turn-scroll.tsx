@@ -57,6 +57,7 @@ const PageTurnSection = ({ children, index, totalSections }: PageTurnSectionProp
           borderRadius,
           transformOrigin: "bottom center",
           transformStyle: "preserve-3d",
+          willChange: "transform",
         }}
         className="h-full w-full shadow-2xl"
       >
